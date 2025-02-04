@@ -1,7 +1,7 @@
 window.onload = handledata;
 
 function handledata() {
-  fetch("http://localhost:3000/get_all_services", {
+  fetch("https://local-services.onrender.com/get_all_services", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -119,7 +119,7 @@ function confirmDelete(serviceId) {
 }
 
 function deleteService(serviceId) {
-  fetch(`http://localhost:3000/delete_service/${serviceId}`, { method: "DELETE" })
+  fetch(`https://local-services.onrender.com/delete_service/${serviceId}`, { method: "DELETE" })
     .then((response) => response.json())
     .then(() => {
       closeModal();
@@ -136,7 +136,7 @@ function saveChanges(serviceId) {
     ratings: parseInt(document.getElementById("edit-ratings").value),
   };
 
-  fetch(`http://localhost:3000/update_service/${serviceId}`, {
+  fetch(`https://local-services.onrender.com/update_service/${serviceId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(updatedService),
