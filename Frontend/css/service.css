@@ -1,0 +1,170 @@
+/* Reset */
+body, h1, h2, a, input, button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Page Title */
+h1 {
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  color: #4CAF50;
+}
+
+/* Search Box */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+#search-box {
+  width: 300px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #4CAF50;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#search-box:focus {
+  border-color: #2e7d32;
+}
+
+#search-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#search-button:hover {
+  background-color: #2e7d32;
+}
+
+/* Service Cards Container */
+.service-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  justify-content: space-between; /* Spreads the cards evenly */
+  gap: 20px; /* Space between cards */
+  width: 100%;
+  max-width: 1200px; /* Limits the container width */
+  margin: 0 auto; /* Centers the container */
+}
+
+/* Service Cards */
+.service-card {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1 1 calc(25% - 20px); /* Flexible width for each card */
+  max-width: calc(25% - 20px); /* Ensures cards don’t grow too large */
+  padding: 20px;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+}
+
+/* Hover Effects */
+.service-card:hover {
+  transform: translateY(-5px) scale(1.05); /* Added scale effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Links within Service Cards */
+.service-card a {
+  text-decoration: none;
+  color: #4CAF50;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#no-results {
+  font-weight: bold;
+  color: #d32f2f; /* Red color for the message */
+  display: none; /* Hidden by default */
+  font-size: 1.5rem;
+  text-align: center;
+  position: absolute; /* Position the message over the page */
+  top: 30%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for the element's own dimensions */
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries */
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .service-card {
+    flex: 1 1 calc(50% - 20px); /* Two cards per row */
+    max-width: calc(50% - 20px);
+  }
+
+  .search-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  #search-box {
+    width: 250px;
+  }
+}
+
+/* Smartphones (max-width: 480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .service-card {
+    flex: 1 1 100%; /* One card per row */
+    max-width: 100%;
+  }
+
+  #search-box {
+    width: 90%;
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/editor.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="services-container"></div>
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+          <h2 id="modal-title">Edit Service</h2>
+          <form id="edit-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+      
+            <label for="mobile_no">Mobile Number:</label>
+            <input type="tel" id="mobile_no" name="mobile_no" required>
+      
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+      
+            <div class="modal-buttons">
+              <button type="submit" class="save-btn">Save</button>
+              <button type="button" class="cancel-btn" id="cancel-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+</body>
+<script src="./js/editor.js"></script>
+</html>

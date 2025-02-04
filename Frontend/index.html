@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Business</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="hamburger" onclick="toggleMenu()">Menu</div>
+    <div class="menu" id="menu">
+
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </header>
+  <main>
+    <section id="content">
+      <!-- Content goes here -->
+    </section>
+
+  </main>
+  <h1>Local Business Directory</h1>
+  <p>Find trusted service in your area with ease!</p>
+  <a href="service.html" class="btn explore-btn">Get started</a>
+  <script src="script.js"></script>
+  <footer>
+      </footer>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>

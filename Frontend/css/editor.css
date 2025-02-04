@@ -1,0 +1,109 @@
+#services-container {
+    display: flex;
+    background-color: aquamarine;
+    flex-wrap: wrap;
+    justify-content: center; /* ✅ Centers items */
+    gap: 15px; /* ✅ Spacing between cards */
+    padding: 10px;
+    margin: 1rem;
+}
+
+.service-card {
+    background-color: blanchedalmond;
+    width: 250px; /* ✅ Fixed width */
+    min-height: 170px; /* ✅ Fixed height */
+    margin: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* ✅ Soft shadow */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ✅ Name and icons on the same row */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* ✅ Icons stay on the right side */
+.icons-container {
+    display: flex;
+    gap: 10px;
+}
+
+/* ✅ Icons styling */
+.fa-edit, .fa-trash-alt {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.fa-edit {
+    color: rgb(16, 135, 238);
+}
+
+.fa-trash-alt {
+    color: red;
+}
+
+/* ✅ Ratings */
+.ratings-container {
+    display: flex;
+    justify-content: center;
+}
+
+.fa-star {
+    color: gold;
+    margin: 2px;
+}
+
+#get-services {
+  color: aliceblue;
+  background-color: rgb(16, 135, 238);
+  border-radius: 5px;
+  padding: 10px;
+  width: 10rem;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 60%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
