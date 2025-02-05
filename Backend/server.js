@@ -15,10 +15,10 @@ app.use((req, res, next) => {
 });
 
 const db = mysql.createConnection({
-  host: process.env.MYSQL_HOST || "sql.freedb.tech",
-  user: process.env.MYSQL_USER || "freedb_aadhithyan_s",
-  password: process.env.MYSQL_PASSWORD || "rg9P%X#2mvPDeQ%",
-  database: process.env.MYSQL_DATABASE || "freedb_attendance_db_aadhi",
+  host: process.env.MYSQL_HOST ,
+  user: process.env.MYSQL_USER ,
+  password: process.env.MYSQL_PASSWORD ,
+  database: process.env.MYSQL_DATABASE 
 });
 
 db.connect((err) => {
