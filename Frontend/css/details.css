@@ -1,65 +1,150 @@
-body{
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    margin: 0%;
-    padding: 0%;
-    gap: 0.5rem; 
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: hidden; /* ✅ Prevent horizontal scrolling */
 }
-#service-name{
-    text-align: center;
-    font-size: 2rem;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+#service-name {
+    font-size: 1.8rem;
     font-weight: bold;
     color: #333;
+    word-wrap: break-word;
 }
-#service-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin: 0.5rem;
-    padding: 0.5rem;
-    text-align: center;
-    margin: 0%;
-    text-align: center;
 
+#add-service {
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
-.service-card{
+
+#add-service:hover {
+    background-color: #45a049;
+}
+
+#services-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 10px;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.service-card {
+    background-color: blanchedalmond;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    gap: 0.5rem;
-    line-height: 0.5rem;
-    margin: 0.5rem;
-    padding: 0.5rem;
-    border: 2px solid #4CAF50;
-    border-radius: 8px;
-    background-color: #fff;
-    width: 25rem;
-    text-align: center;
-    margin: 0.25rem;
+    gap: 10px;
+    box-sizing: border-box;
 }
-#add-service{
-    margin: 0.5rem;
-    padding: 0.5rem;
-    border: 2px solid #4CAF50;
-    border-radius: 8px;
-    background-color: #fff;
+
+.service-card h5,
+.service-card p
+ {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
 }
-#search-box{
-    margin: auto;
-    padding: 0.5rem;
-    border: 2px solid #4CAF50;
-    border-radius: 8px;
-    background-color: #fff;
+.service-card a{
+    text-decoration: none;
 }
-#search-button{
-    margin: auto;
-    padding: 0.5rem;
-    border: 2px solid #4CAF50;
-    border-radius: 8px;
-    background-color: #fff;
+
+.service-name_main {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.fa-star {
+    color: yellow;
+    margin-right: 2px;
+}
+
+.star-rating {
+    color: rgb(216, 21, 69);
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+    #services-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    #services-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 5px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #add-service {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .service-card {
+        width: 100%;  /* ✅ Make sure cards take full width */
+    }
+}
+.label {
+    color: black;        /* Make the label text black */
+    font-weight: bold;   /* Bold labels; change to normal if you prefer */
+  }
+  
+  /* If you want the content after the label to be normal, no extra style is needed,
+     assuming your default text style is normal. */
+/* Ensure default heading font-weight is normal */
+.service-card h5,
+.service-card p,
+.service-card a {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: normal; /* Override default boldness */
+}
+
+/* Style for label text */
+.label {
+    color: black;        /* Label text in black */
+    font-weight: bold;   /* Label is bold */
+}
+
+/* Style for actual content */
+.content {
+    font-weight: normal; /* Ensure content is normal weight */
+}
+
+/* Example star-rating style */
+.star-rating {
+    color: rgb(192, 39, 64);
+    font-size: 16px;
 }

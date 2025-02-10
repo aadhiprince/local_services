@@ -107,3 +107,8 @@
     border-radius: 4px;
   }
   
+  .star-rating {
+    color: gold; /* Yellow color for stars */
+    font-size: 16px;
+  }
+  

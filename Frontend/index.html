@@ -3,37 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Local Business</title>
+  <title>Local Business Directory</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
-    <div class="hamburger" onclick="toggleMenu()">Menu</div>
-    <div class="menu" id="menu">
-
-      <a href="login.html">Login</a>
-      <a href="signup.html">Signup</a>
-      <a href="#">About Us</a>
-      <a href="#">Contact Us</a>
-    </div>
+    <nav class="navbar">
+      <div class="logo">Local Business</div>
+      <ul class="nav-links">
+        <li><a href="login.html">Login</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
   </header>
   <main>
-    <section id="content">
-      <!-- Content goes here -->
-    </section>
-
+    <h1>Local Business Directory</h1>
+    <p>Find trusted services in your area with ease!</p>
+    <a href="service.html" class="btn explore-btn">Get Started</a>
   </main>
-  <h1>Local Business Directory</h1>
-  <p>Find trusted service in your area with ease!</p>
-  <a href="service.html" class="btn explore-btn">Get started</a>
-  <script src="script.js"></script>
   <footer>
-      </footer>
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
+    <p>&copy; 2025 Local Business Directory. All rights reserved.</p>
+  </footer>
 </body>
 </html>

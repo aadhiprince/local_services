@@ -14,63 +14,68 @@ app.use((req, res, next) => {
   next();
 });
 
-const db = mysql.createConnection({
-  host: process.env.MYSQL_HOST ,
-  user: process.env.MYSQL_USER ,
-  password: process.env.MYSQL_PASSWORD ,
-  database: process.env.MYSQL_DATABASE 
+// Create a connection pool instead of a single connection.
+const db = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-db.connect((err) => {
+// Optional: test the pool
+db.getConnection((err, connection) => {
   if (err) {
-    console.error("Error connecting to database:", err);
+    console.error("Error connecting to database (pool):", err);
   } else {
-    console.log("Connected to MySQL database");
+    console.log("Connected to MySQL database (pool)");
+    connection.release();
   }
 });
 
-app.post('/login' ,  (req , res) => {
-    const { username , password } = req.body;
-    console.log(username , password)
-    
-    db.query(
-      "SELECT * FROM admin WHERE username = ? AND password = ?",
-      [username , password] , (err , response) => {
-        if (err) {
-          console.log(err);
-          return res.status(500).send("An error occurred while logging in");
-        }
-        console.log(response)
-        if (response.length === 0) {
-          return res.status(401).send("Invalid username or password");
-        }
-        return res.status(200).json({
-          success: true,
-          message: "Login successful",
-          data: response,
-        });
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  console.log(username, password);
+  
+  db.query(
+    "SELECT * FROM admin WHERE username = ? AND password = ?",
+    [username, password],
+    (err, response) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send("An error occurred while logging in");
       }
-    );
-  })
-app.get('/get_all_services' , (req , res) => {
-    db.query(
-      "SELECT * FROM local_service",
-      (err , response) => {
-        if (err) {
-          console.log(err);
-          return res.status(500).send("An error occurred while getting services");
-        }
-        if (response.length === 0) {
-          return res.status(404).send("No services found");
-        }
-        return res.status(200).json({
-          success: true,
-          message: "Services found",
-          data: response,
-        });
+      console.log(response);
+      if (response.length === 0) {
+        return res.status(401).send("Invalid username or password");
       }
-    );
-  })
+      return res.status(200).json({
+        success: true,
+        message: "Login successful",
+        data: response,
+      });
+    }
+  );
+});
+
+app.get('/get_all_services', (req, res) => {
+  db.query("SELECT * FROM local_service", (err, response) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("An error occurred while getting services");
+    }
+    if (response.length === 0) {
+      return res.status(404).send("No services found");
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Services found",
+      data: response,
+    });
+  });
+});
 
 app.put("/update_service/:id", (req, res) => {
   const { name, mobile_no, address, service, ratings } = req.body;
@@ -107,7 +112,7 @@ app.delete("/delete_service/:id", (req, res) => {
       });
     }
   );
-})
+});
 
 app.get("/get_services", (req, res) => {
   const service = req.query.service;
@@ -143,28 +148,27 @@ app.post("/add_service", (req, res) => {
   const { name, mobile, address, service, ratings } = req.body;
 
   db.query(
-    "SELECT * FROM local_service WHERE mobile_no = ?  ",
+    "SELECT * FROM local_service WHERE mobile_no = ?",
     [mobile],
     (err, results) => {
       if (err) {
         console.log(err);
+        return res.status(500).send("An error occurred");
       }
-      if(results.length > 0){
+      if (results.length > 0) {
         return res.status(300).json({
-          success:false,
-          message:"Service already exists"
-        })
+          success: false,
+          message: "Service already exists"
+        });
       }
       if (results.length === 0) {
         db.query(
-          "INSERT INTO local_service (name , mobile_no , address , service , ratings) VALUES (?,?,?,?,?)",
+          "INSERT INTO local_service (name, mobile_no, address, service, ratings) VALUES (?,?,?,?,?)",
           [name, mobile, address, service, ratings],
           (err, result) => {
             if (err) {
               console.log(err);
-              return res
-                .status(500)
-                .send("An error occurred while adding service");
+              return res.status(500).send("An error occurred while adding service");
             }
             if (result.affectedRows > 0) {
               return res.status(200).json({
@@ -178,7 +182,6 @@ app.post("/add_service", (req, res) => {
     }
   );
 });
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
