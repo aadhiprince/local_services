@@ -24,7 +24,7 @@ form.addEventListener("submit", (e) => {
       service: service.toLowerCase(),
       ratings: 0,
     };
-    fetch("http://localhost:3000/add_service", {
+    fetch("https://local-services.onrender.com/add_service", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

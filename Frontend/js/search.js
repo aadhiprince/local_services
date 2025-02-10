@@ -5,7 +5,7 @@ services_container.forEach((service) => {
     const div = service.querySelector("h2");
     const services = div.textContent.toLowerCase();
     console.log(services);
-    const backendUrl = `http://localhost:3000/get_services?service=${services}`;
+    const backendUrl = `https://local-services.onrender.com/get_services?service=${services}`;
     fetch(backendUrl, {
       method: "GET",
       headers: {
