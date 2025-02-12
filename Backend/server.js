@@ -37,7 +37,6 @@ db.getConnection((err, connection) => {
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  console.log(username, password);
   
   db.query(
     "SELECT * FROM admin WHERE username = ? AND password = ?",
@@ -181,6 +180,9 @@ app.post("/add_service", (req, res) => {
       }
     }
   );
+});
+app.get("/warm-up", (req, res) => {
+  res.status(200).send("Warm up successful");
 });
 
 const PORT = process.env.PORT || 3000;

@@ -11,8 +11,8 @@
     <nav class="navbar">
       <div class="logo">Local Business</div>
       <ul class="nav-links">
-        <li><a href="login.html">Login</a></li>
-        <li><a href="#">About Us</a></li>
+        <li><a href="login.html">Admin Login</a></li>
+        <li><a href="about.html">About Us</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </nav>
@@ -25,5 +25,20 @@
   <footer>
     <p>&copy; 2025 Local Business Directory. All rights reserved.</p>
   </footer>
+
+  <script>
+    window.onload = () => {
+      fetch("https://local-services.onrender.com/warm-up", {
+        method: "GET",
+        headers: {
+         cache: "no-cache",
+        },  
+      }
+      ).then((response) => {
+        console.log("Warm Up Succesfull");
+      }
+      )
+    }
+  </script>
 </body>
 </html>

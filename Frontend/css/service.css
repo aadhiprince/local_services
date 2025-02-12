@@ -1,5 +1,10 @@
 /* Reset */
-body, h1, h2, a, input, button {
+body,
+h1,
+h2,
+a,
+input,
+button {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -23,7 +28,7 @@ body {
 h1 {
   margin-bottom: 20px;
   font-size: 2.5rem;
-  color: #4CAF50;
+  color: #4caf50;
 }
 
 /* Search Box */
@@ -39,7 +44,7 @@ h1 {
   width: 300px;
   padding: 10px;
   font-size: 1rem;
-  border: 2px solid #4CAF50;
+  border: 2px solid #4caf50;
   border-radius: 5px;
   outline: none;
   transition: border-color 0.3s;
@@ -53,7 +58,7 @@ h1 {
   padding: 10px 20px;
   font-size: 1rem;
   color: #fff;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -84,7 +89,7 @@ h1 {
   flex: 1 1 calc(25% - 20px); /* Flexible width for each card */
   max-width: calc(25% - 20px); /* Ensures cards don’t grow too large */
   padding: 20px;
-  border: 2px solid #4CAF50;
+  border: 2px solid #4caf50;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -101,7 +106,7 @@ h1 {
 /* Links within Service Cards */
 .service-card a {
   text-decoration: none;
-  color: #4CAF50;
+  color: #4caf50;
   font-size: 1.2rem;
   font-weight: bold;
 }
@@ -115,7 +120,10 @@ h1 {
   position: absolute; /* Position the message over the page */
   top: 30%; /* Center vertically */
   left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust for the element's own dimensions */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Adjust for the element's own dimensions */
 }
 
 /* Animation */
@@ -167,4 +175,44 @@ h1 {
   #search-box {
     width: 90%;
   }
+}
+/* Full-Screen Loading Spinner */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  display: none;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#no-results {
+  display: none;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
 }

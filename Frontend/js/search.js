@@ -1,11 +1,17 @@
-const services_container = document.querySelectorAll(".service-card");
-console.log(services_container);
-services_container.forEach((service) => {
+const servicesContainer = document.querySelectorAll(".service-card");
+const spinnerOverlay = document.querySelector(".spinner-overlay");
+const noResultsMessage = document.getElementById("no-results");
+
+// Add click event for each service card
+servicesContainer.forEach((service) => {
   service.addEventListener("click", () => {
     const div = service.querySelector("h2");
     const services = div.textContent.toLowerCase();
     console.log(services);
+
     const backendUrl = `https://local-services.onrender.com/get_services?service=${services}`;
+    showSpinner(); // Show the spinner
+
     fetch(backendUrl, {
       method: "GET",
       headers: {
@@ -13,8 +19,9 @@ services_container.forEach((service) => {
       },
     })
       .then((response) => {
+        hideSpinner(); // Hide the spinner when response is received
         if (response.status === 404 || !response.ok) {
-          return { success: false, message: "No details found" };
+          throw new Error("No details found");
         }
         return response.json();
       })
@@ -24,55 +31,42 @@ services_container.forEach((service) => {
           localStorage.setItem("Services", JSON.stringify(data.data));
           window.location.href = "details.html";
         }
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("An error occurred or no details found.");
       });
   });
 });
 
-// // Search Functionality
-// document.getElementById("search-box").addEventListener("input", function () {
-//     const query = this.value.toLowerCase(); // Get the input value and convert to lowercase
-//     const cards = document.querySelectorAll(".service-card"); // Select all service cards
-//     let anyMatch = false; // Track if any cards match the search
+// Search Functionality
+document.getElementById("search-box").addEventListener("input", function () {
+  const query = this.value.toLowerCase();
+  const cards = document.querySelectorAll(".service-card");
+  let anyMatch = false;
 
-//     cards.forEach((card) => {
-//       const text = card.textContent.toLowerCase(); // Get the card's text and convert to lowercase
-//       if (text.includes(query)) {
-//         card.style.display = "block"; // Show the card if it matches the query
-//         anyMatch = true; // A match is found
-//       } else {
-//         card.style.display = "none"; // Hide the card if it doesn't match the query
-//       }
-//     });
+  cards.forEach((card) => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(query)) {
+      card.style.display = "block";
+      anyMatch = true;
+    } else {
+      card.style.display = "none";
+    }
+  });
 
-//     // Display "No service was found" if no matches are found
-//     const noResultsMessage = document.getElementById("no-results");
-//     if (!anyMatch) {
-//       noResultsMessage.style.display = "block"; // Show the message
-//     } else {
-//       noResultsMessage.style.display = "none"; // Hide the message
-//     }
-//   });
+  if (!anyMatch) {
+    noResultsMessage.style.display = "block";
+  } else {
+    noResultsMessage.style.display = "none";
+  }
+});
 
-//   // Optional: Add functionality for the search button
-//   document.getElementById("search-button").addEventListener("click", function () {
-//     const query = document.getElementById("search-box").value.toLowerCase();
-//     const cards = document.querySelectorAll(".service-card");
-//     let anyMatch = false;
+// Spinner Functions
+function showSpinner() {
+  spinnerOverlay.style.display = "flex";
+}
 
-//     cards.forEach((card) => {
-//       const text = card.textContent.toLowerCase();
-//       if (text.includes(query)) {
-//         card.style.display = "block";
-//         anyMatch = true;
-//       } else {
-//         card.style.display = "none";
-//       }
-//     });
-
-//     const noResultsMessage = document.getElementById("no-results");
-//     if (!anyMatch) {
-//       noResultsMessage.style.display = "block";
-//     } else {
-//       noResultsMessage.style.display = "none";
-//     }
-//   });
+function hideSpinner() {
+  spinnerOverlay.style.display = "none";
+}

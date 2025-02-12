@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('c:\Users\LENOVO\Desktop\localbusiness\image\about.jpeg'); /* Corrected image path */
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+    margin-top: 20px;
+}
+
+h2 {
+    color: #6a0dad; /* Purple */
+    text-align: center;
+}
+
+p {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    line-height: 1.6;
+    color: black;
+}
+   
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #35a735;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.content-box {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #ffcc33, #ff6699); /* Colorful background */
+    border-radius: 8px;
+    box-shadow: 0 0 10px yellow ;
+}
+
+ul {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul li {
+    background: green;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: yellow;
+}
+
+ul li:hover {
+    background: pink;
+}
+
+a {
+    color: darkgreen;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
