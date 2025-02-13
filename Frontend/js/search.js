@@ -33,7 +33,6 @@ servicesContainer.forEach((service) => {
         }
       })
       .catch((error) => {
-        hideSpinner(); // Ensure spinner hides on error
         console.error(error);
         alert("An error occurred or no details found.");
       });
@@ -56,7 +55,11 @@ document.getElementById("search-box").addEventListener("input", function () {
     }
   });
 
-  noResultsMessage.style.display = anyMatch ? "none" : "block";
+  if (!anyMatch) {
+    noResultsMessage.style.display = "block";
+  } else {
+    noResultsMessage.style.display = "none";
+  }
 });
 
 // Spinner Functions

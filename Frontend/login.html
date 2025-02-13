@@ -58,11 +58,6 @@
         .login-container button:hover {
             background: linear-gradient(135deg, #0056b3, #003f7f);
         }
-        .error-message {
-            color: red;
-            display: none;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
@@ -73,17 +68,15 @@
             <input type="password" placeholder="Password" name="password" id="password" required>
             <button type="submit">Login</button>
         </form>
-        <p class="error-message" id="error-message">Invalid username or password.</p>
     </div>
-
     <script>
-        const username = document.getElementById("username");
-        const password = document.getElementById("password");
-        const errorMessage = document.getElementById("error-message");
+        let username = document.getElementById("username");
+        let password = document.getElementById("password");
+        let errorMessage = document.getElementById("error-message");
 
         document.querySelector("form").addEventListener("submit", (e) => {
             e.preventDefault();
-            fetch("https://local-services.onrender.com/login", {
+            fetch("http://localhost:3000/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -93,18 +86,18 @@
                     password: password.value,
                 }),
             })
-            .then((response) => {
-                if (response.status === 200) {
-                    window.location.href = "editor.html";
-                } else {
+                .then((response) => {
+                    if (response.status === 200) {
+                        window.location.href = "editor.html";
+                    } else {
+                        errorMessage.style.display = "block";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    errorMessage.innerText = "An error occurred. Please try again.";
                     errorMessage.style.display = "block";
-                }
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-                errorMessage.innerText = "An error occurred. Please try again.";
-                errorMessage.style.display = "block";
-            });
+                });
         });
     </script>
 </body>
