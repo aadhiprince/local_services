@@ -51,4 +51,4 @@ A **full-stack web application** that helps users find, manage, and update local
 
 ## 🌐 Live Demo
 
-🚀 **Try it here:** [Live Link](#) *(Update with actual URL if deployed)*
+🚀 **Try it here:** [Live Link](https://local-services-project.netlify.app/)
